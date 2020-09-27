@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from "../_modules/client";
 
 @Component({
   selector: 'app-formulaire-client',
@@ -7,31 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormulaireClientComponent implements OnInit {
 
+  public client: Client;
+
   constructor() { }
 
   ngOnInit(): void {
-  }
 
-}
+    this.client = {
+      nom: '',
+      prenom: '',
+      adresse: '',
+      codepostal: undefined,
+      ville: '',
+      pays: '',
+      tel: undefined,
+      mail: '',
+      passwd: '',
+      passwdConf: '',
+      civilite: ''
+    }
 
-class Client {
-  nom: string;
-  prenom: string;
-  adresse: string;
-  codepostal: number;
-  tel: number;
-  mail: string;
-  passwd: string;
-
-  constructor(nom: string, prenom: string, adresse: string, codepostal: number, tel: number, mail: string, passwd: string) {
-
-    this.nom = nom;
-    this.prenom = prenom;
-    this.adresse = adresse;
-    this.codepostal = codepostal;
-    this.tel = tel;
-    this.mail = mail;
-    this.passwd = passwd;
 
   }
+
+  save(model: Client, isValid: boolean){
+    if(isValid){
+      this.client = model;
+    }
+    console.log(model, isValid);
+  }
+
 }
